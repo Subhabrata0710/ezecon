@@ -263,14 +263,14 @@
     // TESTING BYPASS: Skip Razorpay for testing
     // If name is 'test' or 'testing', bypass payment
     // ==========================================
-    if (name.toLowerCase() === 'test' || name.toLowerCase() === 'testing') {
-      showToast('TEST MODE: Skipping Razorpay payment...', 'info');
-      // Simulate slight delay then register directly
-      setTimeout(() => {
-        registerBackend('pay_TEST_' + Date.now(), regType, amount);
-      }, 1000);
-      return;
-    }
+    // if (name.toLowerCase() === 'test' || name.toLowerCase() === 'testing') {
+    //   showToast('TEST MODE: Skipping Razorpay payment...', 'info');
+    //   // Simulate slight delay then register directly
+    //   setTimeout(() => {
+    //     registerBackend('pay_TEST_' + Date.now(), regType, amount);
+    //   }, 1000);
+    //   return;
+    // }
     // ==========================================
 
 
