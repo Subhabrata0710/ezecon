@@ -4,11 +4,11 @@
 // ============================================================
 
 // --- CONFIGURATION ---
-const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
-const UPLOAD_FOLDER_ID = 'YOUR_GOOGLE_DRIVE_FOLDER_ID_HERE';
+const SHEET_ID = '11g3w5c9WlFiyQNB2mHHxMDTyhvVJ9pQyqp_n_S48J7U';
+const UPLOAD_FOLDER_ID = '1mG7hBhJD0O1mdJtJy5fXyP9jyw4SC1-L';
 
 const EMAIL_FROM_NAME = 'EZECON 2026 — SEMI West Bengal';
-const EMAIL_CC = '';  // Add CC emails, comma-separated
+const EMAIL_CC = 'mukherjeerohit301@gmail.com';  // Add CC emails, comma-separated
 
 // ============================================================
 // HANDLE INCOMING REQUESTS
@@ -221,6 +221,7 @@ function sendFailureEmail(error, rawData) {
   try {
     MailApp.sendEmail({
       to: 'semiezecon@gmail.com',
+      cc:'mukherjeerohit301@gmail.com',
       name: EMAIL_FROM_NAME,
       subject: '[EZECON 2026] Registration Error Alert',
       body: 'Error: ' + error.toString() + '\n\nRaw Data:\n' + rawData
@@ -331,6 +332,7 @@ function handleContact(data) {
   try {
     MailApp.sendEmail({
       to: 'semiezecon@gmail.com',
+      cc:'mukherjeerohit301@gmail.com',
       name: 'EZECON 2026 Website',
       subject: 'Contact Form: ' + (data.subject || 'General Inquiry'),
       body: 'Name: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + (data.phone || 'N/A') +

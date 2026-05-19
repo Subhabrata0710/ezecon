@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'AKfycbxS3OderHLemTf98lMwS6HRH9Sf220HDVipKWgl7trrqupOPbMjaPqF1u02X94RWxR8rw',   // Replace with deployed Apps Script URL
+    API_URL: 'https://script.google.com/macros/s/AKfycbw_7KNj-ySBdzuohkTLL3pjWjfGiqjLKL3t151UgXuV1-0H6TUPIFoTMJRb5j_4WIpHaA/exec',   // Replace with deployed Apps Script URL
     RZP_KEY: 'YOUR_RAZORPAY_KEY_HERE',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
@@ -250,6 +250,33 @@
     }
 
     const regType = category + (priceData.hasGala ? ' + Gala Dinner' : '');
+
+
+
+
+
+
+
+
+
+    // ==========================================
+    // TESTING BYPASS: Skip Razorpay for testing
+    // If name is 'test' or 'testing', bypass payment
+    // ==========================================
+    if (name.toLowerCase() === 'test' || name.toLowerCase() === 'testing') {
+      showToast('TEST MODE: Skipping Razorpay payment...', 'info');
+      // Simulate slight delay then register directly
+      setTimeout(() => {
+        registerBackend('pay_TEST_' + Date.now(), regType, amount);
+      }, 1000);
+      return;
+    }
+    // ==========================================
+
+
+
+
+
 
     // Razorpay Payment
     var options = {
