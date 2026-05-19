@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | EZECON 2026</title>
+  <meta name="description" content="EZECON 2026 Delegate Dashboard — view registration details, upload abstracts.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Delegate Dashboard</h1>
+      <div class="divider"></div>
+      <p id="user-welcome">Welcome Back</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Stats -->
+      <div class="dashboard-stats animate-on-scroll">
+        <div class="stat-card">
+          <div class="stat-icon">👤</div>
+          <div class="stat-content"><h3 id="user-name">Loading...</h3><p id="user-type">Delegate</p></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📧</div>
+          <div class="stat-content"><h3 id="user-email">Loading...</h3><p>Email Address</p></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-content"><h3>8–9 Aug 2026</h3><p>Conference Dates</p></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏨</div>
+          <div class="stat-content"><h3>AltAir Hotel</h3><p>Salt Lake, Kolkata</p></div>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+
+        <!-- Abstract Upload -->
+        <div class="dashboard-card animate-on-scroll">
+          <div class="card-header-dash"><h3>📤 Upload Abstract</h3><p>Upload research papers or presentations</p></div>
+          <div class="upload-area" id="upload-area">
+            <div class="upload-icon">📁</div>
+            <p><strong>Click to upload</strong> or drag and drop</p>
+            <p class="text-muted">PDF, DOC, PPT, Images (Max 10MB)</p>
+            <input type="file" id="file-upload" class="file-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
+          </div>
+          <p id="upload-status" class="upload-status"></p>
+          <button class="btn btn-primary" style="width:100%;margin-top:1rem;" onclick="uploadAbstract()" id="upload-btn">Upload File</button>
+        </div>
+
+        <!-- Registration Details -->
+        <div class="dashboard-card animate-on-scroll">
+          <div class="card-header-dash"><h3>✅ Registration Details</h3><p>Your conference registration information</p></div>
+          <div class="info-list">
+            <div class="info-item"><span class="info-label">Registration ID:</span><span class="info-value" id="reg-id">Loading...</span></div>
+            <div class="info-item"><span class="info-label">Category:</span><span class="info-value" id="reg-type">—</span></div>
+            <div class="info-item"><span class="info-label">Amount Paid:</span><span class="info-value" id="reg-amount">—</span></div>
+            <div class="info-item"><span class="info-label">Payment Status:</span><span class="badge badge-success">Confirmed</span></div>
+          </div>
+
+          <!-- QR Code -->
+          <div id="qr-section" style="text-align:center;margin-top:1.5rem;display:none;">
+            <h4 style="margin-bottom:0.5rem;">Your Entry QR Code</h4>
+            <img id="qr-image" src="" alt="QR Code" style="width:200px;height:200px;border:2px solid var(--color-border);border-radius:8px;">
+            <p style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.5rem;">Present this at the venue for entry</p>
+          </div>
+
+          <button class="btn btn-outline" style="width:100%;margin-top:1.5rem;" onclick="logout()">🔓 Logout</button>
+        </div>
+      </div>
+
+      <!-- Uploaded Files -->
+      <div class="dashboard-card animate-on-scroll" style="margin-top:2rem;">
+        <div class="card-header-dash"><h3>📂 Your Uploaded Files</h3><p>Manage your abstracts and presentations</p></div>
+        <div id="file-list" class="file-list">
+          <div class="empty-state"><div class="empty-icon">📭</div><p>No files uploaded yet</p><p class="text-muted">Upload your first abstract above</p></div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="dashboard-grid animate-on-scroll" style="margin-top:2rem;">
+        <div class="info-card-dash">
+          <div class="info-card-icon">📅</div>
+          <h4>Scientific Program</h4>
+          <p>View the complete conference schedule</p>
+          <a href="program.html" class="btn btn-outline" style="margin-top:1rem;">View Program</a>
+        </div>
+        <div class="info-card-dash">
+          <div class="info-card-icon">🏨</div>
+          <h4>Venue Details</h4>
+          <p>AltAir Boutique Hotel, Salt Lake</p>
+          <a href="venue.html" class="btn btn-outline" style="margin-top:1rem;">View Venue</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var session = localStorage.getItem('ezecon_session');
+      if (!session) { window.location.href = 'login.html'; return; }
+      var user = JSON.parse(session);
+      document.getElementById('user-name').textContent = user.name || 'Delegate';
+      document.getElementById('user-email').textContent = user.email || '';
+      document.getElementById('user-welcome').textContent = 'Welcome, ' + (user.name || 'Delegate');
+      document.getElementById('user-type').textContent = user.delegateType || 'Delegate';
+      document.getElementById('reg-id').textContent = user.serialNumber || '—';
+      document.getElementById('reg-type').textContent = user.regType || user.delegateType || '—';
+      document.getElementById('reg-amount').textContent = user.amount ? '₹' + Number(user.amount).toLocaleString('en-IN') : '—';
+
+      // QR Code
+      if (user.serialNumber) {
+        var qrText = 'EZECON 2026\nReg ID: ' + user.serialNumber + '\nName: ' + (user.name||'') + '\nCategory: ' + (user.delegateType||'');
+        var qrUrl = 'https://quickchart.io/qr?text=' + encodeURIComponent(qrText) + '&margin=2&size=300';
+        document.getElementById('qr-image').src = qrUrl;
+        document.getElementById('qr-section').style.display = 'block';
+      }
+
+      loadMyFiles();
+    });
+
+    // File Upload
+    var uploadArea = document.getElementById('upload-area');
+    var fileInput = document.getElementById('file-upload');
+    if (uploadArea && fileInput) {
+      uploadArea.addEventListener('click', function() { fileInput.click(); });
+      uploadArea.addEventListener('dragover', function(e) { e.preventDefault(); uploadArea.style.borderColor = 'var(--color-accent)'; });
+      uploadArea.addEventListener('dragleave', function() { uploadArea.style.borderColor = 'var(--color-border)'; });
+      uploadArea.addEventListener('drop', function(e) { e.preventDefault(); uploadArea.style.borderColor='var(--color-border)'; if(e.dataTransfer.files.length>0){fileInput.files=e.dataTransfer.files;document.getElementById('upload-status').innerHTML='<span style="color:var(--color-accent);">✓ '+e.dataTransfer.files[0].name+' selected</span>';} });
+      fileInput.addEventListener('change', function() { if(this.files.length>0) document.getElementById('upload-status').innerHTML='<span style="color:var(--color-accent);">✓ '+this.files[0].name+' selected</span>'; });
+    }
+
+    async function uploadAbstract() {
+      var file = fileInput.files[0];
+      if (!file) { showToast('Please select a file.','error'); return; }
+      if (file.size > 10*1024*1024) { showToast('File must be under 10MB.','error'); return; }
+      var session = JSON.parse(localStorage.getItem('ezecon_session'));
+      if (!session) { window.location.href='login.html'; return; }
+
+      var btn = document.getElementById('upload-btn');
+      btn.disabled=true; btn.textContent='Uploading...';
+      try {
+        var reader = new FileReader();
+        reader.onload = async function(e) {
+          var base64 = e.target.result.split(',')[1];
+          var resp = await fetch(window.EZECON_CONFIG.API_URL, {
+            method:'POST', body: JSON.stringify({ action:'upload', email:session.email, fileData:base64, mimeType:file.type, fileName:file.name })
+          });
+          var result = await resp.json();
+          btn.disabled=false; btn.textContent='Upload File';
+          if (result.success) { showToast(result.message,'success'); fileInput.value=''; document.getElementById('upload-status').innerHTML=''; loadMyFiles(); }
+          else showToast(result.message||'Upload failed.','error');
+        };
+        reader.readAsDataURL(file);
+      } catch(err) { btn.disabled=false; btn.textContent='Upload File'; showToast('Upload error.','error'); }
+    }
+
+    async function loadMyFiles() {
+      var session = JSON.parse(localStorage.getItem('ezecon_session'));
+      if (!session) return;
+      try {
+        var resp = await fetch(window.EZECON_CONFIG.API_URL, { method:'POST', body: JSON.stringify({ action:'getFiles', email:session.email }) });
+        var result = await resp.json();
+        var fileList = document.getElementById('file-list');
+        if (result.success && result.files && result.files.length > 0) {
+          fileList.innerHTML = result.files.map(function(f) {
+            return '<div class="file-item"><div class="file-info"><span class="file-icon">📄</span><div><strong>'+f.fileName+'</strong><p class="text-muted" style="font-size:0.82rem;">'+f.uploadDate+'</p></div></div><a href="'+f.fileUrl+'" target="_blank" class="btn btn-outline" style="padding:0.4rem 1rem;font-size:0.85rem;">View</a></div>';
+          }).join('');
+        }
+      } catch(e) { console.error('Load files error:', e); }
+    }
+  </script>
+</body>
+</html>

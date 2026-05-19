@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | EZECON 2026</title>
+  <meta name="description" content="Contact the EZECON 2026 organizing committee — SEMI West Bengal Chapter.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <div class="divider"></div>
+      <p>Get in touch with the EZECON 2026 organizing committee</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="align-items:start;">
+
+        <!-- Contact Form -->
+        <div class="animate-on-scroll">
+          <div class="card card-premium" style="padding:2.5rem;">
+            <h3 style="margin-bottom:1.5rem;">Send a Message</h3>
+            <form id="contact-form" onsubmit="submitContact(event)">
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Name *</label>
+                <input type="text" id="contact-name" class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Email *</label>
+                <input type="email" id="contact-email" class="form-control" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Phone</label>
+                <input type="tel" id="contact-phone" class="form-control" placeholder="+91 XXXXX XXXXX">
+              </div>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Subject</label>
+                <input type="text" id="contact-subject" class="form-control" placeholder="Subject">
+              </div>
+              <div class="form-group" style="margin-bottom:1.5rem;">
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Message *</label>
+                <textarea id="contact-message" class="form-control" rows="5" placeholder="Your message..." required style="resize:vertical;"></textarea>
+              </div>
+              <button type="submit" id="contact-btn" class="btn btn-primary" style="width:100%;padding:14px;">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="animate-on-scroll">
+          <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+            <h4 style="margin-bottom:1rem;">📋 Organizing Secretary</h4>
+            <p><strong>Dr Nishant Agarwal</strong></p>
+            <p>📞 <a href="tel:+919836782161" style="color:var(--color-primary);">98367 82161</a></p>
+            <p>✉️ <a href="mailto:semiezecon@gmail.com" style="color:var(--color-primary);">semiezecon@gmail.com</a></p>
+          </div>
+          <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+            <h4 style="margin-bottom:1rem;">📋 Co-Chairman</h4>
+            <p><strong>Dr Bodhisatwa Choudhuri</strong></p>
+            <p>📞 <a href="tel:+919830636315" style="color:var(--color-primary);">98306 36315</a></p>
+          </div>
+          <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+            <h4 style="margin-bottom:1rem;">📧 Email</h4>
+            <p><a href="mailto:semiezecon@gmail.com" style="color:var(--color-primary);">semiezecon@gmail.com</a></p>
+            <p><a href="mailto:semiwbchapter@gmail.com" style="color:var(--color-primary);">semiwbchapter@gmail.com</a></p>
+          </div>
+          <div class="card" style="padding:2rem;">
+            <h4 style="margin-bottom:1rem;">📍 Conference Venue</h4>
+            <p><strong>AltAir Boutique Hotel</strong></p>
+            <p>EM 4, EM Block, Sector V, Salt Lake City, Kolkata – 700091</p>
+            <a href="venue.html" class="btn btn-outline" style="margin-top:1rem;">View Venue Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Frequently Asked Questions</h2>
+        <div class="divider"></div>
+      </div>
+      <div style="max-width:800px;margin:0 auto;">
+        <div class="faq-item animate-on-scroll">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>What is the registration fee?</span><span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer"><p>SEMI Members: ₹2,000 (Early Bird) / ₹2,500 (Regular). Non-SEMI Members: ₹2,500 / ₹3,000. PG Residents: ₹1,500 / ₹2,000. Gala Dinner: ₹3,000 (add-on).</p></div>
+        </div>
+        <div class="faq-item animate-on-scroll">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>When is the Early Bird deadline?</span><span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer"><p>Early Bird pricing is valid till 30th June 2026 midnight.</p></div>
+        </div>
+        <div class="faq-item animate-on-scroll">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Where is the conference venue?</span><span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer"><p>AltAir Boutique Hotel, EM 4, EM Block, Sector V, Salt Lake City, Kolkata – 700091. It is well connected by metro, road, and is ~25 min from the airport.</p></div>
+        </div>
+        <div class="faq-item animate-on-scroll">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Can I submit an abstract?</span><span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer"><p>Yes! After registration, login to your dashboard to upload abstracts for poster and paper presentations.</p></div>
+        </div>
+        <div class="faq-item animate-on-scroll">
+          <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Will certificates be provided?</span><span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer"><p>Yes, all registered delegates will receive a participation certificate. WBMC CME credits may also be awarded.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+  <script>
+    async function submitContact(e) {
+      e.preventDefault();
+      var btn = document.getElementById('contact-btn');
+      btn.disabled = true; btn.textContent = 'Sending...';
+      try {
+        var resp = await fetch(window.EZECON_CONFIG.API_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'contact',
+            name: document.getElementById('contact-name').value.trim(),
+            email: document.getElementById('contact-email').value.trim(),
+            phone: document.getElementById('contact-phone').value.trim(),
+            subject: document.getElementById('contact-subject').value.trim(),
+            message: document.getElementById('contact-message').value.trim()
+          })
+        });
+        var result = await resp.json();
+        btn.disabled = false; btn.textContent = 'Send Message';
+        if (result.success) {
+          showToast('Message sent successfully!', 'success');
+          document.getElementById('contact-form').reset();
+        } else {
+          showToast(result.message || 'Failed to send.', 'error');
+        }
+      } catch(err) {
+        btn.disabled = false; btn.textContent = 'Send Message';
+        showToast('Network error. Please try again.', 'error');
+      }
+    }
+  </script>
+</body>
+</html>
