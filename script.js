@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'YOUR_APPS_SCRIPT_URL_HERE',   // Replace with deployed Apps Script URL
+    API_URL: 'AKfycbxS3OderHLemTf98lMwS6HRH9Sf220HDVipKWgl7trrqupOPbMjaPqF1u02X94RWxR8rw',   // Replace with deployed Apps Script URL
     RZP_KEY: 'YOUR_RAZORPAY_KEY_HERE',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
