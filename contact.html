@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <meta name="description" content="Contact the EZECON 2026 organizing committee — SEMI West Bengal Chapter.">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="nav-placeholder"></div>
 
@@ -45,9 +47,11 @@
               </div>
               <div class="form-group" style="margin-bottom:1.5rem;">
                 <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Message *</label>
-                <textarea id="contact-message" class="form-control" rows="5" placeholder="Your message..." required style="resize:vertical;"></textarea>
+                <textarea id="contact-message" class="form-control" rows="5" placeholder="Your message..." required
+                  style="resize:vertical;"></textarea>
               </div>
-              <button type="submit" id="contact-btn" class="btn btn-primary" style="width:100%;padding:14px;">Send Message</button>
+              <button type="submit" id="contact-btn" class="btn btn-primary" style="width:100%;padding:14px;">Send
+                Message</button>
             </form>
           </div>
         </div>
@@ -61,14 +65,15 @@
             <p>✉️ <a href="mailto:semiezecon@gmail.com" style="color:var(--color-primary);">semiezecon@gmail.com</a></p>
           </div>
           <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-            <h4 style="margin-bottom:1rem;">📋 Co-Chairman</h4>
+            <h4 style="margin-bottom:1rem;">📋 Organising Co-Chairman</h4>
             <p><strong>Dr Bodhisatwa Choudhuri</strong></p>
             <p>📞 <a href="tel:+919830636315" style="color:var(--color-primary);">98306 36315</a></p>
           </div>
           <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
             <h4 style="margin-bottom:1rem;">📧 Email</h4>
             <p><a href="mailto:semiezecon@gmail.com" style="color:var(--color-primary);">semiezecon@gmail.com</a></p>
-            <p><a href="mailto:semiwbchapter@gmail.com" style="color:var(--color-primary);">semiwbchapter@gmail.com</a></p>
+            <p><a href="mailto:semiwbchapter@gmail.com" style="color:var(--color-primary);">semiwbchapter@gmail.com</a>
+            </p>
           </div>
           <div class="card" style="padding:2rem;">
             <h4 style="margin-bottom:1rem;">📍 Conference Venue</h4>
@@ -93,31 +98,44 @@
           <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
             <span>What is the registration fee?</span><span class="faq-toggle">+</span>
           </div>
-          <div class="faq-answer"><p>SEMI Members: ₹2,000 (Early Bird) / ₹2,500 (Regular). Non-SEMI Members: ₹2,500 / ₹3,000. PG Residents: ₹1,500 / ₹2,000. Gala Dinner: ₹3,000 (add-on).</p></div>
+          <div class="faq-answer">
+            <p>SEMI Members: ₹2,000 (Early Bird) / ₹2,500 (Regular). Non-SEMI Members: ₹2,500 / ₹3,000. PG Residents:
+              ₹1,500 / ₹2,000. Gala Dinner: ₹3,000 (add-on).</p>
+          </div>
         </div>
         <div class="faq-item animate-on-scroll">
           <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
             <span>When is the Early Bird deadline?</span><span class="faq-toggle">+</span>
           </div>
-          <div class="faq-answer"><p>Early Bird pricing is valid till 30th June 2026 midnight.</p></div>
+          <div class="faq-answer">
+            <p>Early Bird pricing is valid till 30th June 2026 midnight.</p>
+          </div>
         </div>
         <div class="faq-item animate-on-scroll">
           <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
             <span>Where is the conference venue?</span><span class="faq-toggle">+</span>
           </div>
-          <div class="faq-answer"><p>AltAir Boutique Hotel, EM 4, EM Block, Sector V, Salt Lake City, Kolkata – 700091. It is well connected by metro, road, and is ~25 min from the airport.</p></div>
+          <div class="faq-answer">
+            <p>AltAir Boutique Hotel, EM 4, EM Block, Sector V, Salt Lake City, Kolkata – 700091. It is well connected
+              by metro, road, and is ~25 min from the airport.</p>
+          </div>
         </div>
         <div class="faq-item animate-on-scroll">
           <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
             <span>Can I submit an abstract?</span><span class="faq-toggle">+</span>
           </div>
-          <div class="faq-answer"><p>Yes! After registration, login to your dashboard to upload abstracts for oral presentations.</p></div>
+          <div class="faq-answer">
+            <p>Yes! After registration, login to your dashboard to upload abstracts for oral presentations.</p>
+          </div>
         </div>
         <div class="faq-item animate-on-scroll">
           <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
             <span>Will certificates be provided?</span><span class="faq-toggle">+</span>
           </div>
-          <div class="faq-answer"><p>Yes, all registered delegates will receive a participation certificate. WBMC CME credits may also be awarded.</p></div>
+          <div class="faq-answer">
+            <p>Yes, all registered delegates will receive a participation certificate. WBMC CME credits may also be
+              awarded.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -151,11 +169,12 @@
         } else {
           showToast(result.message || 'Failed to send.', 'error');
         }
-      } catch(err) {
+      } catch (err) {
         btn.disabled = false; btn.textContent = 'Send Message';
         showToast('Network error. Please try again.', 'error');
       }
     }
   </script>
 </body>
+
 </html>
