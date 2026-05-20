@@ -131,6 +131,7 @@
             <option value="">— Select Category —</option>
             <option value="SEMI Member">SEMI Member</option>
             <option value="Non-SEMI Member">Non-SEMI Member</option>
+            <option value="Faculty">Faculty</option>
             <!-- <option value="PG Resident">PG Resident / Trainee</option> -->
           </select>
         </div>
@@ -149,8 +150,8 @@
             <input type="checkbox" id="reg-conf" checked disabled>
             <span>Conference Registration (Mandatory)</span>
           </label>
-          <label class="form-checkbox">
-            <input type="checkbox" id="reg-gala" onchange="updateTotalAmount()">
+          <label class="form-checkbox" id="gala-wrapper" style="opacity: 0.5;">
+            <input type="checkbox" id="reg-gala" onchange="updateTotalAmount()" disabled>
             <span>Add Gala Dinner — ₹3,000</span>
           </label>
         </div>

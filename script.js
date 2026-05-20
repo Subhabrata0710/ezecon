@@ -190,6 +190,8 @@
       confPrice = isEarlyBird ? 2500 : 3000;
     } else if (category === 'PG Resident') {
       confPrice = isEarlyBird ? 1500 : 2000;
+    } else if (category === 'Faculty') {
+      confPrice = 0;
     }
 
     const galaPrice = gala ? 3000 : 0;
@@ -204,6 +206,22 @@
   };
 
   window.updateTotalAmount = function () {
+    const delType = document.getElementById('reg-delegate-type');
+    const hasGala = document.getElementById('reg-gala');
+    const galaWrapper = document.getElementById('gala-wrapper');
+
+    if (delType && hasGala) {
+      const category = delType.value;
+      if (category === 'SEMI Member' || category === 'Faculty') {
+        hasGala.disabled = false;
+        if (galaWrapper) galaWrapper.style.opacity = '1';
+      } else {
+        hasGala.checked = false;
+        hasGala.disabled = true;
+        if (galaWrapper) galaWrapper.style.opacity = '0.5';
+      }
+    }
+
     const priceData = calculateCurrentPrice();
     const display = document.getElementById('total-display');
     if (display) {
