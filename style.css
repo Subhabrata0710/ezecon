@@ -1153,6 +1153,44 @@ select.form-control,
   color: var(--color-text-muted);
 }
 
+.hi-avatar-placeholder {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 35, 102, 0.03), rgba(230, 92, 0, 0.05));
+  border: 2px solid rgba(0, 35, 102, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--color-primary);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 35, 102, 0.04);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.hi-avatar-placeholder svg {
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.hi-card:hover .hi-avatar-placeholder {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(230, 92, 0, 0.15);
+}
+
+.hi-card:hover .hi-avatar-placeholder svg {
+  opacity: 1;
+}
+
+.hi-avatar-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* PROGRAM TABS */
 .program-tabs {
   display: flex;
