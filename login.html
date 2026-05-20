@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | EZECON 2026</title>
-  <meta name="description" content="Login to your EZECON 2026 delegate dashboard.">
+  <title>Login & Abstract Submission | EZECON 2026</title>
+  <meta name="description" content="Login to your EZECON 2026 delegate dashboard to submit abstracts for Oral Presentation.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,40 +12,53 @@
 
   <section class="page-header">
     <div class="container">
-      <h1>Delegate Login</h1>
+      <h1>Abstract Submission &amp; Login</h1>
       <div class="divider"></div>
-      <p>Access your dashboard &amp; abstract submission portal</p>
+      <p>Access your dashboard to submit abstracts for Oral Presentation</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div style="max-width:450px;margin:0 auto;" class="animate-on-scroll">
-        <div class="card card-premium" style="padding:2.5rem;">
-          <h3 style="text-align:center;margin-bottom:1.5rem;">Login</h3>
-
-          <div class="form-group" style="margin-bottom:1.2rem;">
-            <label for="login-email" style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Email Address</label>
-            <input type="email" id="login-email" class="form-control" placeholder="your@email.com" required>
-          </div>
-
-          <div class="form-group" style="margin-bottom:1.5rem;">
-            <label for="login-password" style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Password</label>
-            <input type="password" id="login-password" class="form-control" placeholder="Your password" required>
-          </div>
-
-          <button id="login-btn" class="btn btn-primary" style="width:100%;padding:14px;" onclick="loginUser()">Login</button>
-
-          <div style="margin-top: 1rem; text-align: center;">
-            <a href="images/ASG.pdf" download class="btn btn-outline" style="width:100%; padding:12px; font-size: 0.88rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+      <div class="grid-2" style="align-items: start; gap: 3rem;">
+        
+        <!-- Left: Oral Presentation Brief -->
+        <div class="animate-on-scroll">
+          <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Oral Presentation Submission – EZECON 2026</h2>
+          <div style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text); margin-bottom: 2rem;">
+            <p style="margin-bottom: 1rem;"><strong>EZECON 2026</strong> invites abstract submissions for Oral Presentations from trainees, residents, registrars, Medical Officers, and young clinicians in Emergency Medicine, Critical Care, Trauma, and allied acute care specialties.</p>
+            <p style="margin-bottom: 1rem;">The Oral Presentation session is designed to provide a scientific platform for presenting original research, case reports, case series, audits, quality improvement projects, and clinically relevant academic work related to emergency and acute care medicine.</p>
+            <p style="margin-bottom: 1.5rem;">All submitted abstracts will undergo review by the Scientific Committee. Selected abstracts will be presented as slide-based oral presentations during EZECON 2026. <em>There will be no poster or e-poster category for this section.</em></p>
+            <p style="font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">For details, download the full guidelines:</p>
+            <a href="images/ASG.pdf" download class="btn btn-outline" style="padding:12px 24px; display: inline-flex; align-items: center; gap: 8px;">
               📥 Download Abstract Guidelines
             </a>
           </div>
-
-          <p style="text-align:center;margin-top:1.5rem;font-size:0.9rem;color:var(--color-text-muted);">
-            Don't have an account? <a href="register.html" style="color:var(--color-primary);text-decoration:underline;">Register here</a>
-          </p>
         </div>
+
+        <!-- Right: Login Box -->
+        <div class="animate-on-scroll">
+          <div class="card card-premium" style="padding:2.5rem; max-width: 450px; margin: 0 auto;">
+            <h3 style="text-align:center;margin-bottom:1.5rem;">Delegate Login</h3>
+
+            <div class="form-group" style="margin-bottom:1.2rem;">
+              <label for="login-email" style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Email Address</label>
+              <input type="email" id="login-email" class="form-control" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom:1.5rem;">
+              <label for="login-password" style="display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;">Password</label>
+              <input type="password" id="login-password" class="form-control" placeholder="Your password" required>
+            </div>
+
+            <button id="login-btn" class="btn btn-primary" style="width:100%;padding:14px;" onclick="loginUser()">Login</button>
+
+            <p style="text-align:center;margin-top:1.5rem;font-size:0.9rem;color:var(--color-text-muted);">
+              Don't have an account? <a href="register.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600;">Register here</a>
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
