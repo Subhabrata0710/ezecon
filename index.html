@@ -22,49 +22,74 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">8–9 August 2026 · AltAir Boutique Hotel, Salt Lake, Kolkata</div>
-      <h1>
-        5th EZECON
-        <span class="gold">2026</span>
-      </h1>
-      <p class="hero-subtitle">
-        5th East Zone Emergency Medicine Conference &amp; 8th Bengal EM Conclave<br>
-        Organized by <strong>SEMI — West Bengal Chapter</strong>
-      </p>
-      <p style="font-size:1.1rem;color:var(--color-accent);font-style:italic;margin-bottom:1.5rem;">"Where Knowledge
-        Meets Compassion!"</p>
-      <!-- <div class="hero-details">
-        <div class="hero-detail-item">
-          <span class="icon">📅</span>
-          <span>8–9 August 2026</span>
-        </div>
-        <div class="hero-detail-item">
-          <span class="icon">📍</span>
-          <span>AltAir Boutique Hotel, Salt Lake, Kolkata</span>
-        </div>
-        <div class="hero-detail-item">
-          <span class="icon">🏥</span>
-          <span>Emergency Medicine Summit</span>
-        </div>
-      </div> -->
+    <div class="container hero-container">
+      <!-- Text Side -->
+      <div class="hero-text-side">
+        <!-- Welcomes You Flag -->
+        <div class="welcome-ribbon">Welcomes You</div>
 
-      <!-- Countdown Timer -->
-      <div style="margin:1.5rem 0;">
-        <div
-          style="font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-accent);margin-bottom:0.75rem;font-weight:600;">
-          Conference Begins In</div>
-        <div id="countdown" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-          <div class="countdown-block"><span id="cd-days">00</span><label>Days</label></div>
-          <div class="countdown-block"><span id="cd-hours">00</span><label>Hours</label></div>
-          <div class="countdown-block"><span id="cd-minutes">00</span><label>Min</label></div>
-          <div class="countdown-block"><span id="cd-seconds">00</span><label>Sec</label></div>
+        <!-- SEMI Logo -->
+        <div style="margin-bottom: 1.5rem; display: flex; width: 100%; max-width: 420px;">
+          <img src="images/Semi.png" alt="SEMI Logo"
+            style="width: 100%; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0, 35, 102, 0.06));">
+        </div>
+
+        <!-- Structured Logo Container -->
+        <div class="ezecon-logo-container">
+          <!-- Tiny Birds Silhouettes -->
+          <div class="birds-container">
+            <svg width="24" height="24" viewBox="0 0 24 24"
+              style="display: inline-block; fill: var(--color-primary); transform: rotate(-5deg); opacity: 0.65;">
+              <path d="M 2 12 Q 8 6 12 12 Q 16 6 22 12 Q 16 9 12 12 Q 8 9 2 12" />
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24"
+              style="display: inline-block; fill: var(--color-primary); transform: translate(12px, -8px) rotate(-15deg); opacity: 0.55;">
+              <path d="M 2 12 Q 8 6 12 12 Q 16 6 22 12 Q 16 9 12 12 Q 8 9 2 12" />
+            </svg>
+          </div>
+
+          <!-- Logo Image -->
+          <img src="images/ezecon2026.png" alt="EZECON 2026"
+            style="width: 100%; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0, 35, 102, 0.06));">
+        </div>
+
+        <p class="hero-subtitle">
+          5th East Zone Emergency Medicine Conference &amp; 8th Bengal EM Conclave<br>
+          Organized by <strong>SEMI — West Bengal Chapter</strong>
+        </p>
+
+        <p style="font-size:1.1rem;color:var(--color-accent);font-style:italic;margin-bottom:1.5rem;font-weight:600;">
+          "Where Knowledge Meets Compassion!"</p>
+        <div class="hero-badge">8–9 August 2026 · AltAir Boutique Hotel, Kolkata</div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-wrapper">
+          <div class="countdown-label">Conference Begins In</div>
+          <div id="countdown" class="countdown-timer">
+            <div class="countdown-block"><span id="cd-days">00</span><label>Days</label></div>
+            <div class="countdown-block"><span id="cd-hours">00</span><label>Hours</label></div>
+            <div class="countdown-block"><span id="cd-minutes">00</span><label>Min</label></div>
+            <div class="countdown-block"><span id="cd-seconds">00</span><label>Sec</label></div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg">Register Now</a>
+          <a href="program.html" class="btn btn-secondary btn-lg">View Program</a>
         </div>
       </div>
 
-      <div class="hero-actions">
-        <a href="register.html" class="btn btn-primary btn-lg">Register Now</a>
-        <a href="index.html" class="btn btn-secondary btn-lg">View Program</a>
+      <!-- Image Side (Kolkata illustration with diagonal paint sweeps) -->
+      <div class="hero-image-side">
+        <!-- Birds on image side -->
+        <div style="position: absolute; top: -30px; left: 20px; opacity: 0.5;">
+          <svg width="28" height="28" viewBox="0 0 24 24" style="fill: var(--color-primary);">
+            <path d="M 2 12 Q 8 6 12 12 Q 16 6 22 12 Q 16 9 12 12 Q 8 9 2 12" />
+          </svg>
+        </div>
+        <div class="hero-illustration-wrapper">
+          <img src="images/kolkata_hero_bg.png" alt="Kolkata Heritage Tram & Landmarks" class="hero-illustration">
+        </div>
       </div>
     </div>
   </section>
@@ -83,7 +108,7 @@
               2026</strong> &amp; the <strong>8th Bengal EM Conclave</strong>, to be held on <strong>8th &amp; 9th
               August 2026</strong> at <strong>AltAir Boutique Hotel, Salt Lake City, Kolkata</strong>.</p>
           <p>Organized by the <strong>Society for Emergency Medicine India (SEMI) — West Bengal Chapter</strong>, EZECON
-            2026 promises an outstanding academic programme featuring national faculty, workshops, poster presentations,
+            2026 promises an outstanding academic programme featuring national faculty, workshops, oral presentations,
             and interactive case-based sessions.</p>
           <p>The conference theme — <em>"Where Knowledge Meets Compassion!"</em> — reflects our commitment to combining
             clinical excellence with compassionate patient care.</p>
@@ -98,7 +123,7 @@
             <div style="text-align:left;line-height:2.4;">
               <div>🚨 <strong>National Emergency Medicine Faculty</strong></div>
               <div>🔬 <strong>Pre-Conference Workshops</strong></div>
-              <div>📑 <strong>Poster &amp; Paper Presentations</strong></div>
+              <div>📑 <strong>Oral Presentations</strong></div>
               <div>🏆 <strong>Quiz Competition</strong></div>
               <div>🎭 <strong>Gala Dinner</strong></div>
               <div>🏨 <strong>AltAir Boutique Hotel, Kolkata</strong></div>
@@ -126,7 +151,7 @@
           <div style="font-size:1rem;color:#ccc;margin-top:0.5rem;">Conference Days</div>
         </div>
         <div class="animate-on-scroll">
-          <div style="font-size:2.8rem;font-weight:800;color:var(--color-accent);" data-counter="5">0</div>
+          <div style="font-size:2.8rem;font-weight:800;color:var(--color-accent);" data-counter="2">0</div>
           <div style="font-size:1rem;color:#ccc;margin-top:0.5rem;">Workshops</div>
         </div>
       </div>
@@ -227,9 +252,9 @@
 
   <style>
     .countdown-block {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 35, 102, 0.04);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 35, 102, 0.08);
       border-radius: 8px;
       padding: 12px 18px;
       min-width: 70px;
@@ -248,7 +273,7 @@
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--color-text-muted);
       margin-top: 4px;
       display: block;
     }
