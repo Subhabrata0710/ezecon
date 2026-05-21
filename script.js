@@ -9,7 +9,7 @@
   // ---- Configuration ----
   const CONFIG = {
     API_URL: 'https://script.google.com/macros/s/AKfycbw_7KNj-ySBdzuohkTLL3pjWjfGiqjLKL3t151UgXuV1-0H6TUPIFoTMJRb5j_4WIpHaA/exec',   // Replace with deployed Apps Script URL
-    RZP_KEY: 'rzp_live_S9kFXcSkm7C1Rc',       // Replace with Razorpay key
+    RZP_KEY: 'rzp_live_Ss2p3xvUwcYje7',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
     LOADER_DELAY: 600
