@@ -184,15 +184,16 @@
     const isEarlyBird = now <= earlyBirdEnd;
 
     let confPrice = 0;
-    if (category === 'SEMI Member') {
+    if (category === 'SEMI Member' || category === 'Faculty') {
       confPrice = isEarlyBird ? 2000 : 2500;
     } else if (category === 'Non-SEMI Member') {
       confPrice = isEarlyBird ? 2500 : 3000;
     } else if (category === 'PG Resident') {
       confPrice = isEarlyBird ? 1500 : 2000;
-    } else if (category === 'Faculty') {
-      confPrice = 0;
     }
+    // else if (category === 'Faculty') {
+    //   confPrice = 0;
+    // }
 
     const galaPrice = gala ? 3000 : 0;
     return {
