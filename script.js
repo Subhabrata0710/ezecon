@@ -176,23 +176,27 @@
     const delType = document.getElementById('reg-delegate-type');
     const hasGala = document.getElementById('reg-gala');
     const workshop = document.getElementById('reg-workshop');
-
+    const hasConf = document.getElementById('reg-conf');
+    
     if (!delType) return { total: 0, confPrice: 0, galaPrice: 0, workshopPrice: 0, delType: '' };
 
     const category = delType.value;
     const gala = hasGala ? hasGala.checked : false;
     const workshopCategory = workshop ? workshop.value : '';
+    const isConfSelected = hasConf ? hasConf.checked : true;
     const now = new Date();
     const earlyBirdEnd = new Date('2026-06-30T23:59:59');
     const isEarlyBird = now <= earlyBirdEnd;
 
     let confPrice = 0;
-    if (category === 'SEMI Member' || category === 'Faculty') {
-      confPrice = isEarlyBird ? 2000 : 2500;
-    } else if (category === 'Non-SEMI Member') {
-      confPrice = isEarlyBird ? 2500 : 3000;
-    } else if (category === 'PG Resident') {
-      confPrice = isEarlyBird ? 1500 : 2000;
+    if (isConfSelected) {
+      if (category === 'SEMI Member' || category === 'Faculty') {
+        confPrice = isEarlyBird ? 2000 : 2500;
+      } else if (category === 'Non-SEMI Member') {
+        confPrice = isEarlyBird ? 2500 : 3000;
+      } else if (category === 'PG Resident') {
+        confPrice = isEarlyBird ? 1500 : 2000;
+      }
     }
     // else if (category === 'Faculty') {
     //   confPrice = 0;
@@ -214,6 +218,7 @@
       workshopPrice: workshopPrice,
       delType: category,
       workshopCategory: workshopCategory,
+      isConfSelected: isConfSelected,
       isEarlyBird: isEarlyBird,
       hasGala: gala
     };
@@ -223,6 +228,20 @@
     const delType = document.getElementById('reg-delegate-type');
     const hasGala = document.getElementById('reg-gala');
     const galaWrapper = document.getElementById('gala-wrapper');
+    const workshop = document.getElementById('reg-workshop');
+    const confCheckbox = document.getElementById('reg-conf');
+    const confText = document.getElementById('reg-conf-text');
+
+    if (workshop && confCheckbox) {
+      if (workshop.value === 'Nurses') {
+        confCheckbox.disabled = false;
+        if (confText) confText.textContent = 'Conference Registration (Optional)';
+      } else {
+        confCheckbox.checked = true;
+        confCheckbox.disabled = true;
+        if (confText) confText.textContent = 'Conference Registration (Mandatory)';
+      }
+    }
 
     if (delType && hasGala) {
       const category = delType.value;
@@ -278,10 +297,15 @@
     const amount = priceData.total;
 
     if (amount === 0) {
-      return showToast('Invalid registration amount. Please select a category.', 'error');
+      return showToast('Invalid registration amount. Please select a category or workshop.', 'error');
     }
 
-    const regType = category + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
+    let regTypeStr = category;
+    if (!priceData.isConfSelected) {
+      regTypeStr = 'Workshop Only';
+    }
+
+    const regType = regTypeStr + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
 
 
 

@@ -176,8 +176,8 @@
 
         <div class="form-options">
           <label class="form-checkbox">
-            <input type="checkbox" id="reg-conf" checked disabled>
-            <span>Conference Registration (Mandatory)</span>
+            <input type="checkbox" id="reg-conf" checked disabled onchange="updateTotalAmount()">
+            <span id="reg-conf-text">Conference Registration (Mandatory)</span>
           </label>
           <label class="form-checkbox" id="gala-wrapper" style="opacity: 0.5;">
             <input type="checkbox" id="reg-gala" onchange="updateTotalAmount()" disabled>
