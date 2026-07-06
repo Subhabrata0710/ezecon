@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbw_7KNj-ySBdzuohkTLL3pjWjfGiqjLKL3t151UgXuV1-0H6TUPIFoTMJRb5j_4WIpHaA/exec',   // Replace with deployed Apps Script URL
+    API_URL: 'https://script.google.com/macros/s/AKfycbwj0IPeaYZDFSZQ1_saYY5mgc6QSIGIGu0hs8SHZMvzKTFLuylKcKLItc9-xGJQRZujSw/exec',   // Replace with deployed Apps Script URL
     RZP_KEY: 'rzp_live_Ss2p3xvUwcYje7',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
@@ -175,10 +175,13 @@
   window.calculateCurrentPrice = function () {
     const delType = document.getElementById('reg-delegate-type');
     const hasGala = document.getElementById('reg-gala');
-    if (!delType) return { total: 0, confPrice: 0, galaPrice: 0, delType: '' };
+    const workshop = document.getElementById('reg-workshop');
+
+    if (!delType) return { total: 0, confPrice: 0, galaPrice: 0, workshopPrice: 0, delType: '' };
 
     const category = delType.value;
     const gala = hasGala ? hasGala.checked : false;
+    const workshopCategory = workshop ? workshop.value : '';
     const now = new Date();
     const earlyBirdEnd = new Date('2026-06-30T23:59:59');
     const isEarlyBird = now <= earlyBirdEnd;
@@ -196,11 +199,21 @@
     // }
 
     const galaPrice = gala ? 3000 : 0;
+
+    let workshopPrice = 0;
+    if (workshopCategory === 'Doctors') {
+      workshopPrice = 1000;
+    } else if (workshopCategory === 'Nurses') {
+      workshopPrice = 600;
+    }
+
     return {
-      total: confPrice + galaPrice,
+      total: confPrice + galaPrice + workshopPrice,
       confPrice: confPrice,
       galaPrice: galaPrice,
+      workshopPrice: workshopPrice,
       delType: category,
+      workshopCategory: workshopCategory,
       isEarlyBird: isEarlyBird,
       hasGala: gala
     };
@@ -268,7 +281,7 @@
       return showToast('Invalid registration amount. Please select a category.', 'error');
     }
 
-    const regType = category + (priceData.hasGala ? ' + Gala Dinner' : '');
+    const regType = category + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
 
 
 
@@ -334,6 +347,7 @@
       delegateType: document.getElementById('reg-delegate-type').value,
       foodPreference: document.getElementById('reg-food').value,
       hasGala: document.getElementById('reg-gala') ? document.getElementById('reg-gala').checked : false,
+      workshopCategory: document.getElementById('reg-workshop') ? document.getElementById('reg-workshop').value : '',
       regType: regType,
       amount: amount,
       paymentId: paymentId

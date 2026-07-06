@@ -76,6 +76,26 @@
           <p>• Gala Dinner is an optional add-on available for SEMI members and Faculty Only.</p>
           <!-- <p>• All prices are inclusive of GST where applicable.</p> -->
         </div>
+        
+        <h3 style="padding: 20px 20px 10px; color: var(--color-primary); font-size: 1.2rem; text-align: center;">Pre-Conference Workshop (Neuro Emergency Workshop)</h3>
+        <table class="pricing-table" style="margin-bottom: 20px;">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Doctors</td>
+              <td>₹1,000</td>
+            </tr>
+            <tr>
+              <td>Nurses / Paramedics</td>
+              <td>₹600</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- REGISTRATION FORM -->
@@ -133,6 +153,15 @@
             <option value="Non-SEMI Member">Non-SEMI Member</option>
             <option value="Faculty">Faculty</option>
             <!-- <option value="PG Resident">PG Resident / Trainee</option> -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-workshop">Pre-Conference Workshop (Optional)</label>
+          <select id="reg-workshop" class="form-select" onchange="updateTotalAmount()">
+            <option value="">— Not Attending —</option>
+            <option value="Doctors">Doctors (₹1,000)</option>
+            <option value="Nurses">Nurses / Paramedics (₹600)</option>
           </select>
         </div>
 
