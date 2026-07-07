@@ -75,6 +75,8 @@
         <div class="pricing-notes">
           <!-- <p>• Early Bird pricing valid till <strong>30th June 2026 midnight</strong>.</p> -->
           <p>• Gala Dinner is an optional add-on available for SEMI members and Faculty Only.</p>
+          <p>• Regestration for <strong>Pre-conference workshop (SIMWARS) </strong>is separate from the conference
+            registration and is <strong>₹3,000 per team</strong>.</p>
           <!-- <p>• All prices are inclusive of GST where applicable.</p> -->
         </div>
         <div>
@@ -99,6 +101,7 @@
             </tbody>
           </table>
         </div>
+
       </div>
       <!-- dger -->
       <!-- REGISTRATION FORM -->
@@ -160,13 +163,42 @@
         </div>
 
         <div class="form-group">
-          <label for="reg-workshop">Pre-Conference Workshop (Optional)</label>
+          <label for="reg-workshop">Neuro Emergency Workshop (Optional)</label>
           <select id="reg-workshop" class="form-select" onchange="updateTotalAmount()">
             <option value="">— Not Attending —</option>
             <option value="Doctors">Doctors (₹1,000)</option>
             <option value="Nurses">Nurses / Paramedics (₹600)</option>
           </select>
         </div>
+
+        <div class="form-group" style="margin-top:15px;">
+          <label for="reg-simwars">Are you attending SIMWARS (Pre-conf workshop) (Optional)?</label>
+          <select id="reg-simwars" class="form-select" onchange="toggleSimwarsTeam(); updateTotalAmount()">
+            <option value="No">— Not Attending —</option>
+            <option value="Yes">Yes (₹3,000 per team)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="simwars-team-group" style="display: none; margin-top: 15px;">
+          <label for="reg-simwars-team">Team Name (Mandatory for SIMWARS) *</label>
+          <input id="reg-simwars-team" class="form-control" placeholder="Enter your team name">
+        </div>
+
+        <script>
+          function toggleSimwarsTeam() {
+            var simwars = document.getElementById('reg-simwars').value;
+            var teamGroup = document.getElementById('simwars-team-group');
+            var teamInput = document.getElementById('reg-simwars-team');
+            if (simwars === 'Yes') {
+              teamGroup.style.display = 'block';
+              teamInput.required = true;
+            } else {
+              teamGroup.style.display = 'none';
+              teamInput.required = false;
+              teamInput.value = '';
+            }
+          }
+        </script>
 
         <div class="form-group">
           <label for="reg-food">Food Preference *</label>

@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbwj0IPeaYZDFSZQ1_saYY5mgc6QSIGIGu0hs8SHZMvzKTFLuylKcKLItc9-xGJQRZujSw/exec',   // Replace with deployed Apps Script URL
+    API_URL: 'https://script.google.com/macros/s/AKfycby_Q5vkRDgSWkyrXhXxpjGzy-z2mGL-AiGt9H-eJBLYblK8COcU_jCWknefcVGe6JDRSw/exec',   // Replace with deployed Apps Script URL
     RZP_KEY: 'rzp_live_Ss2p3xvUwcYje7',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
@@ -177,12 +177,14 @@
     const hasGala = document.getElementById('reg-gala');
     const workshop = document.getElementById('reg-workshop');
     const hasConf = document.getElementById('reg-conf');
-    
-    if (!delType) return { total: 0, confPrice: 0, galaPrice: 0, workshopPrice: 0, delType: '' };
+    const simwars = document.getElementById('reg-simwars');
+
+    if (!delType) return { total: 0, confPrice: 0, galaPrice: 0, workshopPrice: 0, simwarsPrice: 0, delType: '' };
 
     const category = delType.value;
     const gala = hasGala ? hasGala.checked : false;
     const workshopCategory = workshop ? workshop.value : '';
+    const simwarsSelected = simwars ? simwars.value : 'No';
     const isConfSelected = hasConf ? hasConf.checked : true;
     const now = new Date();
     const earlyBirdEnd = new Date('2026-06-30T23:59:59');
@@ -211,13 +213,17 @@
       workshopPrice = 600;
     }
 
+    const simwarsPrice = simwarsSelected === 'Yes' ? 3000 : 0;
+
     return {
-      total: confPrice + galaPrice + workshopPrice,
+      total: confPrice + galaPrice + workshopPrice + simwarsPrice,
       confPrice: confPrice,
       galaPrice: galaPrice,
       workshopPrice: workshopPrice,
+      simwarsPrice: simwarsPrice,
       delType: category,
       workshopCategory: workshopCategory,
+      simwarsSelected: simwarsSelected,
       isConfSelected: isConfSelected,
       isEarlyBird: isEarlyBird,
       hasGala: gala
@@ -275,6 +281,8 @@
     const pass = document.getElementById('reg-password').value.trim();
     const food = document.getElementById('reg-food').value;
     const category = document.getElementById('reg-delegate-type').value;
+    const simwarsSelected = document.getElementById('reg-simwars') ? document.getElementById('reg-simwars').value : 'No';
+    const teamName = document.getElementById('reg-simwars-team') ? document.getElementById('reg-simwars-team').value.trim() : '';
 
     if (!name || !email || !phone || !institution || !city || !designation || !pass) {
       return showToast('Please fill all required fields.', 'error');
@@ -284,6 +292,9 @@
     }
     if (!food) {
       return showToast('Please select food preference.', 'error');
+    }
+    if (simwarsSelected === 'Yes' && !teamName) {
+      return showToast('Please enter your team name for SIMWARS.', 'error');
     }
     if (pass.length < 6) {
       return showToast('Password must be at least 6 characters.', 'error');
@@ -305,7 +316,10 @@
       regTypeStr = 'Workshop Only';
     }
 
-    const regType = regTypeStr + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
+    let regType = regTypeStr + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
+    if (priceData.simwarsSelected === 'Yes') {
+      regType += ' + SIMWARS (' + teamName + ')';
+    }
 
 
 
@@ -372,6 +386,8 @@
       foodPreference: document.getElementById('reg-food').value,
       hasGala: document.getElementById('reg-gala') ? document.getElementById('reg-gala').checked : false,
       workshopCategory: document.getElementById('reg-workshop') ? document.getElementById('reg-workshop').value : '',
+      simwarsSelected: document.getElementById('reg-simwars') ? document.getElementById('reg-simwars').value : 'No',
+      teamName: document.getElementById('reg-simwars-team') ? document.getElementById('reg-simwars-team').value.trim() : '',
       regType: regType,
       amount: amount,
       paymentId: paymentId

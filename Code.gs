@@ -56,8 +56,8 @@ function getSheet(name) {
       sheet.appendRow([
         'Serial No', 'Name', 'Email', 'Phone', 'Institution', 'City',
         'Designation', 'Password', 'Delegate Type', 'Food Preference',
-        'Gala Dinner', 'Workshop', 'Reg Type', 'Amount', 'Payment ID',
-        'QR Code URL', 'Timestamp'
+        'Gala Dinner', 'Reg Type', 'Amount', 'Payment ID',
+        'QR Code URL', 'Timestamp', 'Workshop', 'SIMWARS', 'Team Name'
       ]);
       sheet.setFrozenRows(1);
     }
@@ -123,12 +123,14 @@ function registerUser(data) {
       data.delegateType || '',
       data.foodPreference || '',
       data.hasGala ? 'Yes' : 'No',
-      data.workshopCategory || '',
       data.regType || '',
       data.amount || 0,
       data.paymentId || '',
       savedQrUrl,
-      new Date()
+      new Date(),
+      data.workshopCategory || '',
+      data.simwarsSelected || 'No',
+      data.teamName || ''
     ]);
 
     // Send confirmation email

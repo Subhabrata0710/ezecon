@@ -14,18 +14,22 @@
 
   <section class="page-header">
     <div class="container">
-      <h1>Pre-Conference Workshop</h1>
+      <h1>Pre-Conference Workshops</h1>
       <div class="divider"></div>
-      <p>Neuro Emergency Workshop (Morning Sessions)</p>
-      <div style="margin-top: 20px;">
-        <a href="images/workshop.pdf" target="_blank" class="btn btn-primary"
-          style="text-decoration:none; padding:10px 20px; font-weight:bold;">Open Brochure</a>
+      <div class="program-tabs" style="margin-top: 20px; justify-content: center;">
+        <button id="btn-neuro" class="tab-btn active" onclick="switchWorkshop('neuro')">Neuro Emergency Workshop</button>
+        <button id="btn-simwars" class="tab-btn" onclick="switchWorkshop('simwars')">SIMWARS</button>
       </div>
     </div>
   </section>
 
-  <section class="section section-dark">
-    <div class="container">
+  <div id="neuro-workshop">
+    <section class="section section-dark">
+      <div class="container">
+        <div style="text-align:center; margin-bottom: 30px;">
+          <a href="images/workshop.pdf" target="_blank" class="btn btn-primary"
+            style="text-decoration:none; padding:10px 20px; font-weight:bold;">Open Brochure</a>
+        </div>
       <div class="program-timeline active" data-day="1" style="max-width:800px; margin:0 auto;">
 
         <div class="timeline-item">
@@ -180,8 +184,39 @@
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <div id="simwars-workshop" style="display: none;">
+    <section class="section section-dark">
+      <div class="container" style="text-align: center;">
+        <div style="margin-bottom: 30px;">
+          <a href="images/simwars.pdf" target="_blank" class="btn btn-primary"
+            style="text-decoration:none; padding:10px 20px; font-weight:bold;">Download Brochure</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 30px; align-items: center; max-width: 900px; margin: 0 auto;">
+          <img src="images/sim1.png" alt="SIMWARS Page 1" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="images/sim2.png" alt="SIMWARS Page 2" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function switchWorkshop(selector) {
+      if (selector === 'neuro') {
+        document.getElementById('neuro-workshop').style.display = 'block';
+        document.getElementById('simwars-workshop').style.display = 'none';
+        document.getElementById('btn-neuro').classList.add('active');
+        document.getElementById('btn-simwars').classList.remove('active');
+      } else {
+        document.getElementById('neuro-workshop').style.display = 'none';
+        document.getElementById('simwars-workshop').style.display = 'block';
+        document.getElementById('btn-neuro').classList.remove('active');
+        document.getElementById('btn-simwars').classList.add('active');
+      }
+    }
+  </script>
 
   <div id="footer-placeholder"></div>
   <button class="back-to-top" aria-label="Back to top">↑</button>
