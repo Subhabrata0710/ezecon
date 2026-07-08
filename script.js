@@ -213,7 +213,11 @@
       workshopPrice = 600;
     }
 
-    const simwarsPrice = simwarsSelected === 'Yes' ? 3000 : 0;
+    let simwarsPrice = 0;
+    if (simwarsSelected === 'Yes') {
+      simwarsPrice = 3000 - confPrice;
+      if (simwarsPrice < 0) simwarsPrice = 0;
+    }
 
     return {
       total: confPrice + galaPrice + workshopPrice + simwarsPrice,
