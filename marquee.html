@@ -1,0 +1,48 @@
+<div class="marquee-banner">
+  <div class="marquee-content">
+    <span>We have applied for 10 CME hours
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have applied
+      for 10 CME hours &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      We have applied for 10 CME hours
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have applied
+      for 10 CME hours &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      We have applied for 10 CME hours</span>
+  </div>
+</div>
+
+<style>
+  .marquee-banner {
+    background: linear-gradient(90deg, #e63946, #c00);
+    color: #ffffff;
+    font-family: 'Outfit', 'DM Sans', 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
+    z-index: 1001;
+  }
+
+  .marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee-scroll 30s linear infinite;
+    padding-left: 50%;
+  }
+
+  .marquee-content span {
+    display: inline-block;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+</style>

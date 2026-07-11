@@ -19,6 +19,7 @@
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
+    loadComponent('marquee-placeholder', 'marquee.html');
     loadComponent('nav-placeholder', 'nav.html', initNavigation);
     loadComponent('footer-placeholder', 'footer.html');
     initScrollAnimations();
