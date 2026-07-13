@@ -470,7 +470,7 @@
   // PROGRAM TABS
   // ============================================================
   window.initProgramTabs = function () {
-    const tabs = document.querySelectorAll('.tab-btn');
+    const tabs = document.querySelectorAll('.tab-btn[data-day]');
     const timelines = document.querySelectorAll('.program-timeline');
     if (tabs.length === 0) return;
     tabs.forEach(function (tab) {
