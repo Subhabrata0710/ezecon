@@ -222,6 +222,15 @@
           </label>
         </div>
 
+        <div class="form-group" style="margin-top:20px;">
+          <label for="reg-voucher">Voucher Code (Optional)</label>
+          <div style="display:flex; gap:10px;">
+            <input id="reg-voucher" class="form-control" placeholder="Enter voucher code" style="flex:1;">
+            <button type="button" class="btn btn-primary" onclick="applyVoucher()" style="padding: 10px 20px;">Apply</button>
+          </div>
+          <small id="voucher-message" style="display:none; margin-top:5px; font-weight:600;"></small>
+        </div>
+
         <div class="total-bar">
           <div class="total-label">Total Amount Payable:</div>
           <div class="total-value" id="total-display">₹0</div>

@@ -189,7 +189,12 @@
     const isConfSelected = hasConf ? hasConf.checked : true;
     const now = new Date();
     const earlyBirdEnd = new Date('2026-06-30T23:59:59');
-    const isEarlyBird = now <= earlyBirdEnd;
+    let isEarlyBird = now <= earlyBirdEnd;
+
+    let voucherCode = document.getElementById('reg-voucher') ? document.getElementById('reg-voucher').value.trim().toUpperCase() : '';
+    if (voucherCode === 'EARLYBIRD') {
+      isEarlyBird = true;
+    }
 
     let confPrice = 0;
     if (isConfSelected) {
@@ -220,8 +225,58 @@
       if (simwarsPrice < 0) simwarsPrice = 0;
     }
 
+    let total = confPrice + galaPrice + workshopPrice + simwarsPrice;
+    let discount = 0;
+    let voucherMsg = '';
+    let voucherStatus = 'success';
+
+    if (voucherCode) {
+      if (voucherCode === 'EARLYBIRD') {
+        voucherMsg = 'Early bird pricing applied.';
+      } else if (voucherCode === 'SEMI1000') {
+        if (category === 'SEMI Member') {
+          discount = 1000;
+          voucherMsg = '₹1,000 discount applied.';
+        } else {
+          voucherMsg = 'Voucher only valid for SEMI Members.';
+          voucherStatus = 'error';
+        }
+      } else if (voucherCode === 'FREEUNIVERSAL') {
+        discount = total;
+        voucherMsg = 'Free registration applied.';
+      } else if (voucherCode === 'DOC1000') {
+        discount = 1000;
+        voucherMsg = 'Flat ₹1,000 discount applied.';
+      } else if (voucherCode === 'SEMI2000') {
+        if (category === 'SEMI Member') {
+          discount = 2000;
+          voucherMsg = '₹2,000 discount applied.';
+        } else {
+          voucherMsg = 'Voucher only valid for SEMI Members.';
+          voucherStatus = 'error';
+        }
+      } else if (voucherCode === 'NONSEMI2000') {
+        if (category === 'Non-SEMI Member') {
+          discount = 2000;
+          voucherMsg = '₹2,000 discount applied.';
+        } else {
+          voucherMsg = 'Voucher only valid for Non-SEMI Members.';
+          voucherStatus = 'error';
+        }
+      } else {
+        voucherMsg = 'Invalid voucher code.';
+        voucherStatus = 'error';
+      }
+    }
+
+    total = total - discount;
+    if (total < 0) total = 0;
+
     return {
-      total: confPrice + galaPrice + workshopPrice + simwarsPrice,
+      total: total,
+      discount: discount,
+      voucherMsg: voucherMsg,
+      voucherStatus: voucherStatus,
       confPrice: confPrice,
       galaPrice: galaPrice,
       workshopPrice: workshopPrice,
@@ -283,6 +338,23 @@
     if (display) {
       display.textContent = '₹' + priceData.total.toLocaleString('en-IN');
     }
+
+    const voucherMsgEl = document.getElementById('voucher-message');
+    if (voucherMsgEl && document.getElementById('reg-voucher') && document.getElementById('reg-voucher').value.trim() !== '') {
+      voucherMsgEl.style.display = 'block';
+      voucherMsgEl.textContent = priceData.voucherMsg;
+      if (priceData.voucherStatus === 'error') {
+        voucherMsgEl.style.color = 'var(--color-danger, red)';
+      } else {
+        voucherMsgEl.style.color = 'var(--color-success, green)';
+      }
+    } else if (voucherMsgEl) {
+      voucherMsgEl.style.display = 'none';
+    }
+  };
+
+  window.applyVoucher = function () {
+    updateTotalAmount();
   };
 
   // ============================================================
@@ -405,6 +477,7 @@
       workshopCategory: document.getElementById('reg-workshop') ? document.getElementById('reg-workshop').value : '',
       simwarsSelected: document.getElementById('reg-simwars') ? document.getElementById('reg-simwars').value : 'No',
       teamName: document.getElementById('reg-simwars-team') ? document.getElementById('reg-simwars-team').value.trim() : '',
+      voucherCode: document.getElementById('reg-voucher') ? document.getElementById('reg-voucher').value.trim().toUpperCase() : '',
       regType: regType,
       amount: amount,
       paymentId: paymentId
