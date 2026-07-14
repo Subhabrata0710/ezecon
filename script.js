@@ -205,7 +205,7 @@
     //   confPrice = 0;
     // }
 
-    const galaPrice = gala ? 3000 : 0;
+    const galaPrice = (gala && category !== 'Faculty') ? 3000 : 0;
 
     let workshopPrice = 0;
     if (workshopCategory === 'Doctors') {
@@ -256,13 +256,25 @@
 
     if (delType && hasGala) {
       const category = delType.value;
+      const galaText = galaWrapper ? galaWrapper.querySelector('span') : null;
+
       if (category === 'SEMI Member' || category === 'Faculty') {
         hasGala.disabled = false;
         if (galaWrapper) galaWrapper.style.opacity = '1';
+        if (galaText) {
+          if (category === 'Faculty') {
+            galaText.innerHTML = 'Add Gala Dinner &mdash; <span style="color:var(--color-success);font-weight:600;">Complementary</span>';
+          } else {
+            galaText.innerHTML = 'Add Gala Dinner &mdash; &#8377;3,000';
+          }
+        }
       } else {
         hasGala.checked = false;
         hasGala.disabled = true;
         if (galaWrapper) galaWrapper.style.opacity = '0.5';
+        if (galaText) {
+          galaText.innerHTML = 'Add Gala Dinner &mdash; &#8377;3,000';
+        }
       }
     }
 
