@@ -263,6 +263,9 @@
           voucherMsg = 'Voucher only valid for Non-SEMI Members.';
           voucherStatus = 'error';
         }
+      } else if (voucherCode === 'NEURO1000') {
+        discount = total - 1000;
+        voucherMsg = 'Flat ₹1,000 registration applied.';
       } else {
         voucherMsg = 'Invalid voucher code.';
         voucherStatus = 'error';
