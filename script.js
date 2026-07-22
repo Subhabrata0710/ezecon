@@ -255,6 +255,9 @@
       } else if (voucherCode === 'FLAT600') {
         discount = total - 600;
         voucherMsg = 'Flat ₹600 discount applied.';
+      } else if (voucherCode === 'FLAT1000') {
+        discount = total - 1000;
+        voucherMsg = 'Flat ₹1000 discount applied.';
       } else if (voucherCode === 'DOC1000') {
         discount = 1000;
         voucherMsg = 'Flat ₹1,000 discount applied.';
