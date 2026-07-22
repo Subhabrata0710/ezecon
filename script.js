@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycby_Q5vkRDgSWkyrXhXxpjGzy-z2mGL-AiGt9H-eJBLYblK8COcU_jCWknefcVGe6JDRSw/exec',   // Replace with deployed Apps Script URL
+    API_URL: 'https://script.google.com/macros/s/AKfycbxPZ0ZQlSdX2fXJJ61fXP-KoGndX034XbH4LOw6g_9BiF5yLnGm6NHRUOSWiiaIQq7zQA/exec',   // Replace with deployed Apps Script URL
     RZP_KEY: 'rzp_live_Ss2p3xvUwcYje7',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
@@ -252,6 +252,9 @@
       } else if (voucherCode === 'FREEUNIVERSAL') {
         discount = total;
         voucherMsg = 'Free registration applied.';
+      } else if (voucherCode === 'FLAT600') {
+        discount = total - 600;
+        voucherMsg = 'Flat ₹600 discount applied.';
       } else if (voucherCode === 'DOC1000') {
         discount = 1000;
         voucherMsg = 'Flat ₹1,000 discount applied.';

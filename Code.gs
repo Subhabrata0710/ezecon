@@ -57,7 +57,7 @@ function getSheet(name) {
         'Serial No', 'Name', 'Email', 'Phone', 'Institution', 'City',
         'Designation', 'Password', 'Delegate Type', 'Food Preference',
         'Gala Dinner', 'Reg Type', 'Amount', 'Payment ID',
-        'QR Code URL', 'Timestamp', 'Workshop', 'SIMWARS', 'Team Name'
+        'QR Code URL', 'Timestamp', 'Workshop', 'SIMWARS', 'Team Name', 'Voucher Code'
       ]);
       sheet.setFrozenRows(1);
     }
@@ -130,7 +130,8 @@ function registerUser(data) {
       new Date(),
       data.workshopCategory || '',
       data.simwarsSelected || 'No',
-      data.teamName || ''
+      data.teamName || '',
+      data.voucherCode || ''
     ]);
 
     // Send confirmation email
