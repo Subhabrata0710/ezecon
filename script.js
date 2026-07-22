@@ -177,6 +177,7 @@
     const delType = document.getElementById('reg-delegate-type');
     const hasGala = document.getElementById('reg-gala');
     const workshop = document.getElementById('reg-workshop');
+    const toxcode = document.getElementById('reg-toxcode');
     const hasConf = document.getElementById('reg-conf');
     const simwars = document.getElementById('reg-simwars');
 
@@ -185,6 +186,7 @@
     const category = delType.value;
     const gala = hasGala ? hasGala.checked : false;
     const workshopCategory = workshop ? workshop.value : '';
+    const toxcodeCategory = toxcode ? toxcode.value : '';
     const simwarsSelected = simwars ? simwars.value : 'No';
     const isConfSelected = hasConf ? hasConf.checked : true;
     const now = new Date();
@@ -214,9 +216,15 @@
 
     let workshopPrice = 0;
     if (workshopCategory === 'Doctors') {
-      workshopPrice = 1000;
+      workshopPrice += 1000;
     } else if (workshopCategory === 'Nurses') {
-      workshopPrice = 600;
+      workshopPrice += 600;
+    }
+
+    if (toxcodeCategory === 'Doctors') {
+      workshopPrice += 1000;
+    } else if (toxcodeCategory === 'Nurses') {
+      workshopPrice += 600;
     }
 
     let simwarsPrice = 0;
@@ -286,6 +294,7 @@
       simwarsPrice: simwarsPrice,
       delType: category,
       workshopCategory: workshopCategory,
+      toxcodeCategory: toxcodeCategory,
       simwarsSelected: simwarsSelected,
       isConfSelected: isConfSelected,
       isEarlyBird: isEarlyBird,
@@ -298,11 +307,12 @@
     const hasGala = document.getElementById('reg-gala');
     const galaWrapper = document.getElementById('gala-wrapper');
     const workshop = document.getElementById('reg-workshop');
+    const toxcode = document.getElementById('reg-toxcode');
     const confCheckbox = document.getElementById('reg-conf');
     const confText = document.getElementById('reg-conf-text');
 
     if (workshop && confCheckbox) {
-      if (workshop.value === 'Nurses') {
+      if (workshop.value === 'Nurses' || (toxcode && toxcode.value === 'Nurses')) {
         confCheckbox.disabled = false;
         if (confText) confText.textContent = 'Conference Registration (Optional)';
       } else {
@@ -408,7 +418,9 @@
       regTypeStr = 'Workshop Only';
     }
 
-    let regType = regTypeStr + (priceData.hasGala ? ' + Gala Dinner' : '') + (priceData.workshopCategory ? ' + Workshop (' + priceData.workshopCategory + ')' : '');
+    let regType = regTypeStr + (priceData.hasGala ? ' + Gala Dinner' : '');
+    if (priceData.workshopCategory) regType += ' + Neuro Workshop (' + priceData.workshopCategory + ')';
+    if (priceData.toxcodeCategory) regType += ' + Toxcode (' + priceData.toxcodeCategory + ')';
     if (priceData.simwarsSelected === 'Yes') {
       regType += ' + SIMWARS (' + teamName + ')';
     }
@@ -477,7 +489,10 @@
       delegateType: document.getElementById('reg-delegate-type').value,
       foodPreference: document.getElementById('reg-food').value,
       hasGala: document.getElementById('reg-gala') ? document.getElementById('reg-gala').checked : false,
-      workshopCategory: document.getElementById('reg-workshop') ? document.getElementById('reg-workshop').value : '',
+      workshopCategory: [
+        document.getElementById('reg-workshop') && document.getElementById('reg-workshop').value ? 'Neuro: ' + document.getElementById('reg-workshop').value : '',
+        document.getElementById('reg-toxcode') && document.getElementById('reg-toxcode').value ? 'Toxcode: ' + document.getElementById('reg-toxcode').value : ''
+      ].filter(Boolean).join(' | '),
       simwarsSelected: document.getElementById('reg-simwars') ? document.getElementById('reg-simwars').value : 'No',
       teamName: document.getElementById('reg-simwars-team') ? document.getElementById('reg-simwars-team').value.trim() : '',
       voucherCode: document.getElementById('reg-voucher') ? document.getElementById('reg-voucher').value.trim().toUpperCase() : '',

@@ -21,6 +21,7 @@
         <button id="btn-neuro" class="tab-btn active" onclick="switchWorkshop('neuro')">Neuro Emergency
           Workshop</button>
         <button id="btn-simwars" class="tab-btn" onclick="switchWorkshop('simwars')">SIMWARS</button>
+        <button id="btn-woodlands" class="tab-btn" onclick="switchWorkshop('woodlands')">SEMI Woodlands Toxcode</button>
         <button id="btn-programme" class="tab-btn" onclick="switchWorkshop('programme')">Scientific Programme</button>
       </div>
     </div>
@@ -789,9 +790,29 @@
     </section>
   </div>
 
+  <div id="woodlands-workshop" style="display: none;">
+    <section class="section section-dark">
+      <div class="container" style="text-align: center;">
+        <div style="margin-bottom: 30px;">
+          <a href="images/popup1.jpeg" target="_blank" class="btn btn-primary"
+            style="text-decoration:none; padding:10px 20px; font-weight:bold;">Download Brochure</a>
+        </div>
+        <div
+          style="display: flex; flex-direction: column; gap: 30px; align-items: center; max-width: 900px; margin: 0 auto;">
+          <img src="images/popup.jpeg" alt="SIMWARS Page 1"
+            style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <!-- <img src="images/sim2.png" alt="SIMWARS Page 2"
+            style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="images/sim3.png" alt="SIMWARS Page 3"
+            style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"> -->
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script>
     function switchWorkshop(selector) {
-      var tabs = ['neuro', 'simwars', 'programme'];
+      var tabs = ['neuro', 'simwars', 'woodlands', 'programme'];
       tabs.forEach(function (t) {
         document.getElementById(t + '-workshop').style.display = 'none';
         document.getElementById('btn-' + t).classList.remove('active');
