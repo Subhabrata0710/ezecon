@@ -444,6 +444,19 @@
 
 
 
+    // NEW BLOCK
+    if (amount === 0) {
+      registerBackend(
+        "FREE_" + Date.now(),
+        regType,
+        0
+      );
+      return;
+    }
+
+
+
+
 
 
 
