@@ -415,10 +415,18 @@
     const priceData = calculateCurrentPrice();
     const amount = priceData.total;
 
-    if (amount === 0) {
-      return showToast('Invalid registration amount. Please select a category or workshop.', 'error');
+    // if (amount === 0) {
+    //   return showToast('Invalid registration amount. Please select a category or workshop.', 'error');
+    // }
+    if (
+      amount === 0 &&
+      !document.getElementById('reg-voucher').value.trim()
+    ) {
+      return showToast(
+        'Please select a category or workshop.',
+        'error'
+      );
     }
-
     let regTypeStr = category;
     if (!priceData.isConfSelected) {
       regTypeStr = 'Workshop Only';
