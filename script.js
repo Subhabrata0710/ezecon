@@ -261,6 +261,9 @@
       } else if (voucherCode === 'DOC1000') {
         discount = 1000;
         voucherMsg = 'Flat ₹1,000 discount applied.';
+      } else if (voucherCode === 'SPECIALGALA') {
+        discount = total - 6000;
+        voucherMsg = 'Gala Dinner Added';
       } else if (voucherCode === 'SEMI2000') {
         if (category === 'SEMI Member') {
           discount = 2000;
