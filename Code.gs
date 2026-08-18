@@ -20,6 +20,7 @@ function doPost(e) {
     let response = {};
 
     if (data.action === 'register') response = registerUser(data);
+    else if (data.action === 'register_ecpr') response = registerECPRUser(data);
     else if (data.action === 'login') response = loginUser(data);
     else if (data.action === 'upload') response = uploadFile(data);
     else if (data.action === 'getFiles') response = getUserFiles(data);
@@ -345,5 +346,93 @@ function handleContact(data) {
     return { success: true, message: 'Message sent successfully!' };
   } catch (e) {
     return { success: false, message: 'Failed to send message.' };
+  }
+}
+// ============================================================
+// REGISTER E-CPR USER
+// ============================================================
+function registerECPRUser(data) {
+  if (!data || !data.email) return { success: false, message: 'No registration data provided.' };
+
+  const lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(30000);
+    const sheet = getSheet('ECPR_Registrations');
+    
+    // Add headers if sheet is empty
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        'Serial No', 'Name', 'Email', 'Phone', 'Institution',
+        'Designation', 'Amount', 'Payment ID', 'Timestamp'
+      ]);
+      sheet.setFrozenRows(1);
+    }
+    
+    const allData = sheet.getDataRange().getValues();
+
+    // Duplicate check
+    for (var i = 1; i < allData.length; i++) {
+      if (allData[i][2] === data.email) {
+        return { success: false, message: 'This email is already registered for E-CPR!' };
+      }
+    }
+
+    // Serial number
+    var rowNum = allData.length;
+    var serialNumber = 'ECPR-' + (1000 + rowNum);
+
+    // Append row
+    sheet.appendRow([
+      serialNumber,
+      data.name || '',
+      data.email || '',
+      data.phone || '',
+      data.institution || '',
+      data.designation || '',
+      data.amount || 0,
+      data.paymentId || '',
+      new Date()
+    ]);
+
+    // Send confirmation email (simplified for E-CPR)
+    try {
+      var subject = 'E-CPR Workshop Registration Confirmation [' + serialNumber + ']';
+      var plainBody =
+        'Dear ' + data.name + ',\n\n' +
+        'Thank you for registering for the E-CPR Workshop!\n\n' +
+        'Your registration has been confirmed. Details:\n' +
+        '─────────────────────────────────\n' +
+        'Registration ID : ' + serialNumber + '\n' +
+        'Amount Paid     : ₹' + data.amount + '\n' +
+        'Payment ID      : ' + (data.paymentId || 'N/A') + '\n' +
+        '─────────────────────────────────\n\n' +
+        'We look forward to welcoming you!\n\n' +
+        'Best regards,\n' +
+        'Organizing Committee\n' +
+        'EZECON 2026 — SEMI West Bengal Chapter\n' +
+        'Email: semiezecon@gmail.com';
+
+      MailApp.sendEmail({
+        to: data.email,
+        name: EMAIL_FROM_NAME,
+        subject: subject,
+        body: plainBody
+      });
+    } catch (emailErr) {
+      console.log('Email failed but registration saved: ' + emailErr.toString());
+    }
+
+    return {
+      success: true,
+      message: 'E-CPR Registration successful! Your ID: ' + serialNumber + '. Confirmation email sent.',
+      serialNumber: serialNumber
+    };
+
+  } catch (e) {
+    console.log('E-CPR Registration error: ' + e.toString());
+    sendFailureEmail(e, JSON.stringify(data));
+    return { success: false, message: 'Registration failed: ' + e.toString() };
+  } finally {
+    lock.releaseLock();
   }
 }

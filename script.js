@@ -8,7 +8,7 @@
 
   // ---- Configuration ----
   const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbxPZ0ZQlSdX2fXJJ61fXP-KoGndX034XbH4LOw6g_9BiF5yLnGm6NHRUOSWiiaIQq7zQA/exec',   // Replace with deployed Apps Script URL
+    API_URL: 'https://script.google.com/macros/s/AKfycbw1TDS127s5rfIafvFRw9l3i57Lu8NrFnRCkIW6ZSnN8d1dpUTtJ3xEEe2SmJavA_Bv7Q/exec',   // Replace with deployed Apps Script URL
     RZP_KEY: 'rzp_live_Ss2p3xvUwcYje7',       // Replace with Razorpay key
     ANIMATION_THRESHOLD: 0.15,
     TOAST_DURATION: 4000,
@@ -557,6 +557,91 @@
     };
     sendRequest(0);
   }
+
+  // ============================================================
+  // E-CPR REGISTRATION — RAZORPAY + BACKEND
+  // ============================================================
+  window.payAndRegisterECPR = function () {
+    const name = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const institution = document.getElementById('reg-institution').value.trim();
+    const designation = document.getElementById('reg-designation').value.trim();
+
+    if (!name || !email || !phone || !institution || !designation) {
+      return showToast('Please fill all required fields.', 'error');
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return showToast('Please enter a valid email address.', 'error');
+    }
+
+    const amount = 5000;
+    const regType = 'E-CPR Workshop';
+
+    var options = {
+      key: CONFIG.RZP_KEY,
+      amount: amount * 100,
+      currency: 'INR',
+      name: 'EZECON 2026',
+      description: regType + ' Registration',
+      handler: function (response) {
+        registerECPRBackend(response.razorpay_payment_id, regType, amount);
+      },
+      prefill: { name: name, email: email, contact: phone },
+      theme: { color: '#1B4F72' }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.on('payment.failed', function (response) {
+      showToast('Payment Failed: ' + response.error.description, 'error');
+    });
+    rzp.open();
+  };
+
+  function registerECPRBackend(paymentId, regType, amount) {
+    const btn = document.getElementById('reg-submit-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Processing...'; }
+
+    const data = {
+      action: 'register_ecpr',
+      name: document.getElementById('reg-name').value.trim(),
+      email: document.getElementById('reg-email').value.trim(),
+      phone: document.getElementById('reg-phone').value.trim(),
+      institution: document.getElementById('reg-institution').value.trim(),
+      designation: document.getElementById('reg-designation').value.trim(),
+      regType: regType,
+      amount: amount,
+      paymentId: paymentId
+    };
+
+    const sendRequest = function (retryCount) {
+      fetch(CONFIG.API_URL, { method: 'POST', body: JSON.stringify(data) })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (result) {
+          if (btn) { btn.disabled = false; btn.textContent = 'Proceed to Payment'; }
+          if (result.success) {
+            showToast('Registration Successful! Check your email for confirmation.', 'success');
+            setTimeout(function () { window.location.href = 'index.html'; }, 2000);
+          } else {
+            showToast('Error: ' + (result.message || 'Registration failed'), 'error');
+          }
+        })
+        .catch(function (error) {
+          if (retryCount < 1) {
+            setTimeout(function () { sendRequest(retryCount + 1); }, 2000);
+          } else {
+            if (btn) { btn.disabled = false; btn.textContent = 'Proceed to Payment'; }
+            showToast('Server Error. Payment ID: ' + paymentId + '. Contact support.', 'error');
+          }
+        });
+    };
+    sendRequest(0);
+  }
+
 
   // ============================================================
   // LOGIN
