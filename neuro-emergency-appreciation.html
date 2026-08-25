@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Certificate | Neuro Emergency Workshop — EZECON 2026</title>
+  <meta name="description" content="Download your personalised Certificate of Appreciation for serving as Faculty at the Neuro Emergency Workshop, EZECON 2026.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/certificate-styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Loading overlay for download -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner-large"></div>
+    <span>Generating your certificate…</span>
+  </div>
+
+  <!-- Navigation -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Hero -->
+  <section class="cert-hero">
+    <div class="cert-hero-content">
+      <div class="hero-badge" style="margin-bottom: 12px;">Neuro Emergency Workshop · 25 July 2026 · Faculty</div>
+      <h1>Download Your <span>Certificate</span></h1>
+      <p>Enter your name below to generate your personalised Certificate of Appreciation as Faculty.</p>
+    </div>
+  </section>
+
+  <!-- Generator -->
+  <section class="cert-section">
+    <div class="cert-container">
+
+      <!-- Input Card -->
+      <div class="input-card">
+        <h2>Enter Your Name</h2>
+        <p class="sub">Your name will appear on the certificate next to <strong>Dr.</strong> exactly as you type it.</p>
+
+        <label class="field-label" for="name-input">Full Name</label>
+        <div class="dr-prefix-row">
+          <span class="dr-prefix">Dr.</span>
+          <input type="text" id="name-input" placeholder="Your full name here" autocomplete="off" maxlength="60">
+        </div>
+        <div class="faculty-status" id="faculty-status"></div>
+
+        <div class="font-picker">
+          <label class="field-label">Signature Style</label>
+          <div class="font-options">
+            <label class="font-option active" id="opt-pinyon">
+              <input type="radio" name="font-style" value="Pinyon Script" checked>
+              <span class="font-preview" style="font-family: 'Pinyon Script', cursive;">Abc</span>
+              <span class="font-name-text">Pinyon Script (Formal)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-divider"></div>
+
+        <button id="download-btn" disabled>
+          <span class="btn-icon">⬇</span>
+          Download Certificate
+        </button>
+        <p class="hint-text">High-resolution PNG · Perfect for printing &amp; sharing</p>
+      </div>
+
+      <!-- Preview Panel -->
+      <div class="preview-panel">
+        <div class="preview-label">Live Preview</div>
+        <div class="canvas-placeholder" id="canvas-placeholder">
+          <span class="placeholder-icon"></span>
+          <span>Start typing your name to see a preview</span>
+        </div>
+        <canvas id="cert-canvas" style="display:none;"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+  <script src="js/faculty-list.js"></script>
+  <script src="js/certificate-common.js"></script>
+  <script>
+    window.initCertificateGenerator({
+      img: 'images/cert-neuro-appreciation.png',
+      xStart: 903,
+      xEnd: 4525,
+      lineY: 2210,
+      lineType: 'A',
+      filenamePart: 'Appreciation_NeuroWorkshop',
+      requiresFacultyCheck: true
+    });
+  </script>
+</body>
+
+</html>
