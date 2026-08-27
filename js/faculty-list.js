@@ -122,5 +122,22 @@ window.FACULTY_LIST = [
   "V P Chandrasekhar",
   "Venugopal PP",
   "Vikrant Chauhan",
-  "Vishal Vaibhaw"
+  "Vishal Vaibhaw",
+  "Rajesh Bhosle",
+  "Kavita Singh",
+  "Prithvijit Chakraborty",
+  "Apratim Chatterjee",
+  "Debajyoti Pathak",
+  "Anirban Ghosal",
+  "Mona Tiwari",
+  "Debayan Dutta",
+  "Indranil Chakraborty",
+  "Biswajit Ghoshdastidar",
+  "Monimoy Ghosh",
+  "Shambo Samrat Samajdar",
+  "Kundan Chaurasia",
+  "Mohit Kharbanda",
+  "Ritwik Ghosal",
+  "Sabyasachi Das",
+  "Arijit Kumar Barai"
 ]
